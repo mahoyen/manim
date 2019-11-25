@@ -27,8 +27,10 @@ class Thing2(VectorScene):
         x1 = b1/(line1.get_slope()-dashed_line1.get_slope())
         dot3pos = np.array([x1, line1.get_slope()*x1, 0])
         dot3 = Dot(dot3pos, color=RED)
-        arc1to3 = ArcBetweenPoints(start = dot1.get_end(), end = dot3.get_end(), angle = alpha)
+        arc1to3 = ArcBetweenPoints(start = dot1.get_center(), end = dot3.get_center(), angle = alpha, label = "x^{2}")
+        print(arc1to3.get_center())
         self.play(ShowCreation(dot3))
+        self.play(Write())
         self.play(ShowCreation(arc1to3))
 
         """
