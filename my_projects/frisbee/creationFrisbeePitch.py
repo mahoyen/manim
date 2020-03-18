@@ -12,11 +12,13 @@ class CreationFrisbeePitch(Scene):
         endzoneLabel = TextMobject("End Zones")
         brickmarkLabel = TextMobject("Brick Marks")
         teamLabel = TextMobject("Teams")
+        diskLabel = TextMobject("Disk")
 
         pitchLabel.to_edge(UP)
         endzoneLabel.to_edge(UP)
         brickmarkLabel.to_edge(UP)
         teamLabel.to_edge(UP)
+        diskLabel.to_edge(UP)
         
 
         frisbeePitch = FrisbeePitch()
@@ -68,15 +70,17 @@ class CreationFrisbeePitch(Scene):
         self.wait(1)
         self.play(FadeOut(teamLabel))
         self.wait()
-        
-        disk = FrisbeeDisk()
-        disk.playerPossesion = redteam.players[0]
-        disk.positionDisk()
-        print(disk.arc_center)
+        currentPlayer = blueteam.players[0]
+        offsetDirection = np.cross(currentPlayer.direction, Z_AXIS) + currentPlayer.direction
+        diskPosition = currentPlayer.get_position() + offsetDirection*0.5*currentPlayer.radius
+        disk = FrisbeeDisk(point=diskPosition)
         self.play(
-            FadeIn(disk)
+            FadeIn(disk),
+            FadeIn(diskLabel)
         )
-
-
+        self.wait()
+        self.play(
+            FadeOut(diskLabel),
+            )
         self.wait(5)
         
