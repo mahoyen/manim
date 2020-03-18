@@ -1,11 +1,12 @@
 from manimlib.imports import *
 from my_projects.frisbee.frisbeepitch import FrisbeePitch
 from my_projects.frisbee.frisbeeTeam import FrisbeeTeam
+from my_projects.frisbee.frisbeeDisk import FrisbeeDisk
 
 class CreationFrisbeePitch(Scene):
 
     def construct(self):
-        title = TextMobject("The Frisbee Pitch Layout")
+        title = TextMobject("The Frisbee Pitch Overview")
 
         pitchLabel = TextMobject("Pitch")
         endzoneLabel = TextMobject("End Zones")
@@ -66,5 +67,16 @@ class CreationFrisbeePitch(Scene):
         )
         self.wait(1)
         self.play(FadeOut(teamLabel))
+        self.wait()
+        
+        disk = FrisbeeDisk()
+        disk.playerPossesion = redteam.players[0]
+        disk.positionDisk()
+        print(disk.arc_center)
+        self.play(
+            FadeIn(disk)
+        )
+
+
         self.wait(5)
         

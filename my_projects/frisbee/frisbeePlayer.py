@@ -22,4 +22,8 @@ class FrisbeePlayer(Dot):
 
     def move_to(self, point):
         self.dot.move_arc_center_to(point)
+
+    
+    def get_position(self):
+        return self.arc_center
     
