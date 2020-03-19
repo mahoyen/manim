@@ -1,4 +1,5 @@
 from my_projects.frisbee.imports import *
+from my_projects.my_utils.imports import *
 from manimlib.imports import *
 
 class MovementTest(Scene):
@@ -20,6 +21,6 @@ class MovementTest(Scene):
         redTeam.vstack_formation(45, BRICK_MARK_POSITION*-redTeam.direction*FRISBEE_DEFAULT_SCALE)
        
         self.play(
-            
+            *[MoveToPoint(player.destination, player) for player in redTeam.players],
         )
         self.wait(5)
