@@ -12,7 +12,7 @@ class MoveToPointAndRotate(Homotopy):
             rotMat = np.array([[np.cos(t*theta), -np.sin(t*theta), 0],
                               [np.sin(t*theta),  np.cos(t*theta), 0],
                               [              0,                0, 1]])
-            rotTransMat = np.hstack((np.identity(3), t*delta_coords))
+            rotTransMat = np.hstack((rotMat, t*delta_coords))
             return np.matmul(rotTransMat, vector)
         Homotopy.__init__(self, moveFunc, mobject)
 
