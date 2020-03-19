@@ -27,7 +27,7 @@ class FrisbeeTeam(VMobject):
         positions = vstack_positions(self.basePoint, self.direction,angle=angle)
         for player, role, position in zip(self.players, roles, positions):
             player.role = role
-            player.move_to(position)
+            player.destination = position
     
 def vstack_positions(basePoint, direction, angle=0, distance=0.04, scale=FRISBEE_DEFAULT_SCALE, nPlayers=7):
     rel_handler_pos = -SIDE_LINE_POSITION/2*np.cross(direction, Z_AXIS)

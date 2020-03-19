@@ -15,8 +15,7 @@ class FrisbeePlayer(Dot):
             "direction: " + str(self.direction),
             "mode:      " + str(self.mode),
             "formation: " + str(self.formation),
-            "role:      " + str(self.role),
-            "direction: " + str(self.direction)]
+            "role:      " + str(self.role)]
         return "\n".join(variableString)
             
 
@@ -25,5 +24,5 @@ class FrisbeePlayer(Dot):
 
     
     def get_position(self):
-        return self.arc_center
+        return self.get_center
     
