@@ -1,4 +1,5 @@
 from manimlib.imports import *
+from my_projects.playtesting.moveToPoint import MoveToPoint
 
 class DotMovement(Scene):
 
@@ -32,6 +33,8 @@ class DotMovement(Scene):
 
         #dotlist[1].apply_function(lambda x: apply_rotTransMatrix(*x, rotTransMatrix))
         self.play(
-            Homotopy(apply_rotTransMatrix, dotlist[0])
+            MoveToPoint(DL, dotlist[0]),
+            MoveToPoint(UR, dotlist[0]),
+            MoveToPoint(3*UL, dotlist[2])
         )
         self.wait(5)
