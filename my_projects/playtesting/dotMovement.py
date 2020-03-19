@@ -38,8 +38,4 @@ class DotMovement(Scene):
             MoveToPoint(3*UL, dotlist[2]),
             MoveToPointAndRotate(2*DR,30, tri),
         )
-        self.wait()
-        self.play(
-            Rotate(tri, TAU/3)
-        )
         self.wait(5)
