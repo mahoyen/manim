@@ -1,7 +1,7 @@
 from manimlib.imports import *
 from my_projects.frisbee.frisbeepitch import FrisbeePitch
 from my_projects.frisbee.frisbeeTeam import FrisbeeTeam
-from my_projects.frisbee.frisbeeDisk import FrisbeeDisk
+from my_projects.frisbee.frisbeeDisc import FrisbeeDisc
 
 class CreationFrisbeePitch(Scene):
 
@@ -12,13 +12,13 @@ class CreationFrisbeePitch(Scene):
         endzoneLabel = TextMobject("End Zones")
         brickmarkLabel = TextMobject("Brick Marks")
         teamLabel = TextMobject("Teams")
-        diskLabel = TextMobject("Disk")
+        discLabel = TextMobject("Disc")
 
         pitchLabel.to_edge(UP)
         endzoneLabel.to_edge(UP)
         brickmarkLabel.to_edge(UP)
         teamLabel.to_edge(UP)
-        diskLabel.to_edge(UP)
+        discLabel.to_edge(UP)
         
 
         frisbeePitch = FrisbeePitch()
@@ -70,17 +70,17 @@ class CreationFrisbeePitch(Scene):
         self.wait(1)
         self.play(FadeOut(teamLabel))
         self.wait()
-        currentPlayer = blueteam.players[0]
+        currentPlayer = redteam.players[0]
         offsetDirection = np.cross(currentPlayer.direction, Z_AXIS) + currentPlayer.direction
-        diskPosition = currentPlayer.get_position() + offsetDirection*0.5*currentPlayer.radius
-        disk = FrisbeeDisk(point=diskPosition)
+        discPosition = currentPlayer.get_position() + offsetDirection*0.5*currentPlayer.radius
+        disc = FrisbeeDisc(point=discPosition)
         self.play(
-            FadeIn(disk),
-            FadeIn(diskLabel)
+            FadeIn(disc),
+            FadeIn(discLabel)
         )
         self.wait()
         self.play(
-            FadeOut(diskLabel),
+            FadeOut(discLabel),
             )
         self.wait(5)
         
