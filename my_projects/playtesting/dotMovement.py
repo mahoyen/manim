@@ -1,5 +1,5 @@
 from manimlib.imports import *
-from my_projects.playtesting.moveToPoint import MoveToPoint
+from my_projects.playtesting.moveToPoint import *
 
 class DotMovement(Scene):
 
@@ -29,12 +29,17 @@ class DotMovement(Scene):
         )
             vector = np.array([x, y, z, 1])
             return np.matmul(rotTransMatrix, vector)
-
-
+        tri = Triangle()
+        self.add(tri)
         #dotlist[1].apply_function(lambda x: apply_rotTransMatrix(*x, rotTransMatrix))
         self.play(
             MoveToPoint(DL, dotlist[0]),
             MoveToPoint(UR, dotlist[0]),
-            MoveToPoint(3*UL, dotlist[2])
+            MoveToPoint(3*UL, dotlist[2]),
+            MoveToPointAndRotate(2*DR,30, tri),
+        )
+        self.wait()
+        self.play(
+            Rotate(tri, TAU/3)
         )
         self.wait(5)
