@@ -14,11 +14,17 @@ class FrisbeeTeam(VMobject):
         self.formation = "START"
         self.basePoint = -direction*ENDZONE_MID*self.scale
         playerslist = [0]*nPlayers
+        pos_list = start_positions(self.basePoint, self.direction, scale=self.scale, nPlayers=nPlayers)
         for iPlayer in range(nPlayers):
-            relativePositionOfPlayer = ((iPlayer+1)*PITCH_WIDTH_RATIO/(nPlayers+1) - SIDE_LINE_POSITION)*self.scale
-            positionOfPlayer = self.basePoint+np.cross(-direction, Z_AXIS)*relativePositionOfPlayer 
-            playerslist[iPlayer] = FrisbeePlayer(self.direction, self.mode, self.formation, role=str(iPlayer),point = positionOfPlayer, **kwargs)
+            playerslist[iPlayer] = FrisbeePlayer(self.direction, self.mode, self.formation, role=str(iPlayer),point = pos_list[iPlayer], **kwargs)
         self.players = VGroup(*playerslist)
+
+    def start_formation(self, basePoint=None):
+        if basePoint is not None:
+            self.basePoint = basePoint
+        positions = start_positions(self.basePoint, self.direction)
+        for player, position in zip(self.players, positions):
+            player.destination = position
 
     def vstack_formation(self,angle=0, basePoint=None):
         if basePoint is not None:
@@ -28,6 +34,15 @@ class FrisbeeTeam(VMobject):
         for player, role, position in zip(self.players, roles, positions):
             player.role = role
             player.destination = position
+
+def start_positions(basePoint, direction, scale=FRISBEE_DEFAULT_SCALE, nPlayers=7):
+    pos_list = []
+    for iPlayer in range(nPlayers):
+        relativePositionOfPlayer = ((iPlayer+1)*PITCH_WIDTH_RATIO/(nPlayers+1) - SIDE_LINE_POSITION)*scale
+        positionOfPlayer = basePoint+np.cross(-direction, Z_AXIS)*relativePositionOfPlayer
+        pos_list.append(positionOfPlayer)
+    return pos_list
+
     
 def vstack_positions(basePoint, direction, angle=0, distance=0.04, scale=FRISBEE_DEFAULT_SCALE, nPlayers=7):
     rel_handler_pos = -SIDE_LINE_POSITION/2*np.cross(direction, Z_AXIS)
