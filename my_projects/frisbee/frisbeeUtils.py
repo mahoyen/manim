@@ -1,0 +1,9 @@
+import numpy as np
+from manimlib.constants import Z_AXIS, ORIGIN
+from my_projects.frisbee.frisbeeConstants import HANDLER, FLICK, HANDLER_MARK_DISTANCE_VSTACK
+
+def calculate_relative_mark_position_vstack(playerRole, markForce, markDirection):
+    forceSide = 1 if markForce == FLICK else -1
+    if playerRole == HANDLER:
+        return HANDLER_MARK_DISTANCE_VSTACK*(forceSide*np.cross(markDirection, Z_AXIS)-markDirection)
+    return ORIGIN

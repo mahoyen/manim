@@ -18,9 +18,14 @@ class MovementTest(Scene):
         )
         self.wait()
 
-        redTeam.vstack_formation(45, BRICK_MARK_POSITION*-redTeam.direction*FRISBEE_DEFAULT_SCALE)
+        redTeam.vstack_formation(0, BRICK_MARK_POSITION*-redTeam.direction*FRISBEE_DEFAULT_SCALE)
        
         self.play(
             *[MoveToPoint(player.destination, player) for player in redTeam.players],
+        )
+        
+        blueTeam.players[0].mark_player(redTeam.players[0])
+        self.play(
+            MoveToPoint(blueTeam.players[0].destination, blueTeam.players[0])
         )
         self.wait(5)
