@@ -54,8 +54,8 @@ def start_positions(basePoint, direction, scale=FRISBEE_DEFAULT_SCALE, nPlayers=
 
     
 def vstack_positions(basePoint, direction, angle=0, distance=0.04, scale=FRISBEE_DEFAULT_SCALE, nPlayers=7):
-    rel_handler_pos = -SIDE_LINE_POSITION/2*np.cross(direction, Z_AXIS)
-    rel_dump_pos = SIDE_LINE_POSITION/3*-direction
+    rel_handler_pos = ORIGIN
+    rel_dump_pos = SIDE_LINE_POSITION/2*(np.cross(direction, Z_AXIS)-direction)
     rel_stack_setter = SIDE_LINE_POSITION/1.4*direction
     rel_stack = [rel_stack_setter]
 
