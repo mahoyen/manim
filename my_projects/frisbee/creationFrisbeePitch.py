@@ -1,5 +1,5 @@
 from manimlib.imports import *
-from my_projects.frisbee.frisbeepitch import FrisbeePitch
+from my_projects.frisbee.frisbeePitch import FrisbeePitch
 from my_projects.frisbee.frisbeeTeam import FrisbeeTeam
 from my_projects.frisbee.frisbeeDisc import FrisbeeDisc
 
