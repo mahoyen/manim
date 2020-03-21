@@ -22,7 +22,7 @@ class FrisbeePlayer(Dot):
         return self.get_center()
     
     def mark_player(self, player):
-        player_pos = player.get_position()
+        player_pos = player.destination
         player_role = player.role
         rel_mark_pos = calculate_relative_mark_position_vstack(player_role, self.force, self.direction)
         self.destination = player_pos + self.scale*rel_mark_pos
