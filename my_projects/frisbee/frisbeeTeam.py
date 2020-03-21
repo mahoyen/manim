@@ -33,12 +33,16 @@ class FrisbeeTeam(VMobject):
         roles = [HANDLER, DUMP, STACK_SETTER]
         cutterRolesAvailable = [CUTTER_1, CUTTER_2, CUTTER_3, CUTTER_4]
         nBasicRoles = len(roles)
-        for iPlayer in range(self.nPlayers-nBasicRoles)
+        for iPlayer in range(self.nPlayers-nBasicRoles):
             roles.insert(nBasicRoles,cutterRolesAvailable[iPlayer])
         positions = vstack_positions(self.basePoint, self.direction,angle=angle, nPlayers=self.nPlayers)
         for player, role, position in zip(self.players, roles, positions):
             player.role = role
             player.destination = position
+
+    def mark_players(self, enemyTeam):
+        for teamPlayer, enemyPlayer in zip(self.players, enemyTeam.players):
+            teamPlayer.mark_player(enemyPlayer)
 
 def start_positions(basePoint, direction, scale=FRISBEE_DEFAULT_SCALE, nPlayers=7):
     pos_list = []

@@ -25,8 +25,9 @@ class MovementTest(Scene):
             *[MoveToPoint(player.destination, player) for player in blueTeam.players],
         )
         
-        blueTeam.players[0].mark_player(redTeam.players[0])
+        blueTeam.mark_players(redTeam)
+        
         self.play(
-            MoveToPoint(blueTeam.players[0].destination, blueTeam.players[0])
+            *[MoveToPoint(player.destination, player) for player in blueTeam.players],
         )
         self.wait(5)
