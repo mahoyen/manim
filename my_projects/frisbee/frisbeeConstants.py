@@ -19,7 +19,15 @@ SIDE_LINE_POSITION = PITCH_WIDTH_RATIO/2
 
 # Position Constants
 HANDLER = "handler"
+DUMP = "dump"
+STACK_SETTER = "stack_setter"
+CUTTER_4 = "fourth_cut"
+CUTTER_3 = "third_cut"
+CUTTER_2 = "second_cut"
+CUTTER_1 = "first_cut"
 
 # Vstack defense constatnts
 HANDLER_MARK_DISTANCE_VSTACK = 0.01
+DUMP_MARK_DISTANCE_VSTACK = 5*HANDLER_MARK_DISTANCE_VSTACK
+DUMP_MARK_ANGLE_VSTACK = 0.3 #RADIANS
 FLICK = "flick"

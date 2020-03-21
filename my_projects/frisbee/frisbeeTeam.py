@@ -13,6 +13,7 @@ class FrisbeeTeam(VMobject):
         self.mode = mode
         self.formation = "START"
         self.basePoint = -direction*ENDZONE_MID*self.scale
+        self.nPlayers = nPlayers
         playerslist = [0]*nPlayers
         pos_list = start_positions(self.basePoint, self.direction, scale=self.scale, nPlayers=nPlayers)
         for iPlayer in range(nPlayers):
@@ -29,8 +30,12 @@ class FrisbeeTeam(VMobject):
     def vstack_formation(self,angle=0, basePoint=None):
         if basePoint is not None:
             self.basePoint = basePoint
-        roles = ["handler", "dump", "stack_setter", "fourth_cut", "third_cut", "second_cut", "first_cut"]
-        positions = vstack_positions(self.basePoint, self.direction,angle=angle)
+        roles = [HANDLER, DUMP, STACK_SETTER]
+        cutterRolesAvailable = [CUTTER_1, CUTTER_2, CUTTER_3, CUTTER_4]
+        nBasicRoles = len(roles)
+        for iPlayer in range(self.nPlayers-nBasicRoles)
+            roles.insert(nBasicRoles,cutterRolesAvailable[iPlayer])
+        positions = vstack_positions(self.basePoint, self.direction,angle=angle, nPlayers=self.nPlayers)
         for player, role, position in zip(self.players, roles, positions):
             player.role = role
             player.destination = position
