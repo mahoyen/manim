@@ -2,7 +2,7 @@ from my_projects.frisbee.imports import *
 from my_projects.my_utils.imports import *
 from manimlib.imports import *
 
-class MovementTest(Scene):
+class VStackFormation(Scene):
 
     def construct(self):
         frisbeePitch = FrisbeePitch()
